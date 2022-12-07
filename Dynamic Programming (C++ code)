@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+// Time Complexity O(n^2)
+void graph_dynamic (int n, int cost [], int d[], int c[][13])
+{
+    for (int i = n-1; i >= 1; i--)
+    {
+        cost[i] = 1000;
+        for (int k = i+1; k<= n; k++)
+} }
+if (c[i][k] != 0 && c[i][k] + cost [k] < cost[i])
+{
+    cost[i] = c[i][k] + cost [k];
+d[i] = k; }
+void print_path (int d[], int i, int n)
+{
+    if (i == n)
+        return;
+    cout << d[i] << " ";
+    print_path(d,d[i], n);
+}
+int main() {
+    int n = 12;
+    int cost[13], d[13];
+    cost[n] = 0; d[0] = 1;
+    int c [13][13] = { {0,0,0,0,0,0,0,0,0,0,0,0,0},
+    {0,0,9,7,3,2,0,0,0,0,0,0,0},{0,0,0,0,0,0,4,2,1,0,0,0,0},
+    {0,0,0,0,0,0,2,7,0,0,0,0,0},{0,0,0,0,0,0,0,0,11,0,0,0,0},
+    {0,0,0,0,0,0,0,11,8,0,0,0,0},{0,0,0,0,0,0,0,0,0,6,5,0,0},
+    {0,0,0,0,0,0,0,0,0,4,3,0,0},{0,0,0,0,0,0,0,0,0,0,5,6,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,4},{0,0,0,0,0,0,0,0,0,0,0,0,2},
+    {0,0,0,0,0,0,0,0,0,0,0,0,5},{0,0,0,0,0,0,0,0,0,0,0,0,0}};
+    graph_dynamic(n,cost,d,c);
+    cout << "Minimum cost: " << cost[1] << endl;
+    print_path(d,0,n);
+    return 0;
+}
+/*
+Minimum cost: 16
+1 2 7 10 12
+*/
